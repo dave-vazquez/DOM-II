@@ -1,0 +1,89 @@
+form {
+    .flex();
+    display: none;
+    width: 100%;
+    
+    margin-top: 20px;
+
+    font-size: 18px;
+
+    
+
+    fieldset {
+        
+        width: 80%;
+        border-top: 2px dashed @navigation-border;
+
+        legend { 
+            margin-left: 25px 
+        }
+        
+        p {
+            margin-top: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .text-input {
+            .flex(@justify: space-between);
+            margin-top: 20px;
+
+            input {
+                width: 70%;
+                padding: 3px;
+                font-size: 16px;
+            }
+
+            @media @mobile {
+                .content-mobile('text-input');
+            }
+        }
+
+        .date-input {
+            .flex(@justify: space-between);
+            margin-top: 20px;
+
+            .radio-buttons {
+                .flex(@justify: space-around);
+                width: 70%;
+            }
+
+            @media @mobile {
+                .content-mobile('date-input');
+            }
+        }
+
+        .button-container {
+            .flex(@justify: space-around);
+            margin: 20px 0;
+
+            button {
+                .button-creator(200px, 45px, @button-bg, @white, 1.8rem); 
+            }
+        }
+    }
+}
+
+.flex(@direction: row; @justify: center; @align: stretch) {
+    display: flex;
+    flex-direction: @direction;
+    justify-content: @justify;
+    align-items: @align;
+}
+
+.content-mobile(@className) {
+
+    & when (@className = 'text-input') {
+        .flex(column);
+
+        input {
+            width: 100%;
+        }
+    }
+
+    & when(@className = 'date-input') {
+        .radio-buttons {
+            .flex(@direction: column);
+        }
+    }
+}

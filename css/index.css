@@ -140,7 +140,8 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+form {
   font-family: 'Indie Flower', cursive;
 }
 h1 {
@@ -347,6 +348,108 @@ img {
   }
 }
 .home .content-pick .destination .btn:hover {
+  background: #FFFFFF;
+  color: #17A2B8;
+}
+.home .content-pick .destination-img-container {
+  width: 70%;
+  display: none;
+}
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  display: none;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 18px;
+}
+form fieldset {
+  width: 80%;
+  border-top: 2px dashed #C0C0C0;
+}
+form fieldset legend {
+  margin-left: 25px;
+}
+form fieldset p {
+  margin-top: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+form fieldset .text-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-top: 20px;
+}
+form fieldset .text-input input {
+  width: 70%;
+  padding: 3px;
+  font-size: 16px;
+}
+@media (max-width: 500px) {
+  form fieldset .text-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+  }
+  form fieldset .text-input input {
+    width: 100%;
+  }
+}
+form fieldset .date-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-top: 20px;
+}
+form fieldset .date-input .radio-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  width: 70%;
+}
+@media (max-width: 500px) {
+  form fieldset .date-input .radio-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+  }
+}
+form fieldset .button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  margin: 20px 0;
+}
+form fieldset .button-container button {
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 45px;
+  background-color: #17A2B8;
+  color: #FFFFFF;
+  border: 1px solid #C0C0C0;
+  cursor: pointer;
+  font-size: 1.8rem;
+}
+@media (max-width: 500px) {
+  form fieldset .button-container button {
+    width: 100%;
+  }
+}
+form fieldset .button-container button:hover {
   background: #FFFFFF;
   color: #17A2B8;
 }

@@ -37,15 +37,13 @@ DOM.signUpButtons.forEach(button => {
     function hideOtherDestinations(evt) {
         let signMeUpButton = evt.target;
         let selectedDestination = evt.target.parentNode;
-        
+
+        signMeUpButton.style.display = 'none';
+
         DOM.destinations.forEach(destination => {
             if(destination !== selectedDestination)
                 destination.style.display = 'none';
         });
-
-        signMeUpButton.style.display = 'none';
-        
-        selectedDestination.style.margin = '0';
     }
 
     function showDestinationImg(evt) {
@@ -74,7 +72,7 @@ DOM.signUpButtons.forEach(button => {
         let destinationTitle = getDestination(evt); 
 
         DOM.form.style.display = 'flex';
-        DOM.formLegend.innerHTML = `${destinationTitle}: Sign up Form!`;
+        DOM.formLegend.innerHTML = `${destinationTitle}`;
     }
 
     function getDestination(evt) {
@@ -99,7 +97,7 @@ DOM.goBackButton.addEventListener('click', (evt)=> {
 
     DOM.destinations.forEach(destination => {
         destination.style.display = 'block';
-        destination.style.marginBottom = '30px';
+        destination.style.margin = '0 0 30px 0';
     });
 
     DOM.signUpButtons.forEach(button => {

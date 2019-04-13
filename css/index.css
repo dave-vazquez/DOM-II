@@ -370,7 +370,7 @@ form fieldset {
   border-top: 2px dashed #C0C0C0;
 }
 form fieldset legend {
-  margin-left: 25px;
+  text-align: center;
 }
 form fieldset p {
   margin-top: 20px;

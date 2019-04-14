@@ -9,6 +9,7 @@ export const DOM = {
 
     // HOME
     contentImgs: document.querySelectorAll('.img-content img'),
+    overlappedImgs: document.querySelectorAll('.img-content #img2'),
     
     // DESTINATIONS
     destinations: document.querySelectorAll('.destination'),

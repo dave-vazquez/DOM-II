@@ -3,14 +3,21 @@ import {DOM} from './dom.js';
 *                              HEADER EVENT LISTENERS                            *
 **********************************************************************************/ 
 
-/* prevents nav bar from appearing in the middle of the page if 
-   page refresh retains horizonatl scroll position */
+// transitions nav opacity/display to 0/none as you scroll down page
+document.addEventListener('scroll', updateNavOpacity);
+
+
+// prevents nav bar from appearing in the middle of the page
+// if a page-refresh retains horizontal scroll position 
 window.addEventListener('load', updateNavOpacity);
 
-/* prevents certain elements from retaining JS manipulated 
-   desktop styles when resized to mobile */
+
+// prevents certain elements from retaining 
+// JS-manipulated desktop-styles when resized to mobile
+// (I have no idea at the moment how to prevent this from happening)
 window.addEventListener('resize', evt => {
 
+    /**************** VIEW PORT WIDTH <= 500 ***************/
     if(evt.target.innerWidth <= 500) {
 
         // Nav Bar
@@ -24,73 +31,75 @@ window.addEventListener('resize', evt => {
             destination.style.margin = '0 auto 30px auto';
         });
 
-        /*
-            Note regarding the above forEach on destinations:
-        
-            I'm noticing that manipulating styles from JS can
-            get really tricky, especially if certain elements
-            inherit positioning properties from parent,
-            flex-containers.
+        // Form
+        hideForm();
 
-            As soon as a flex-item has a style property updated,
-            it appears to lose it's flex-item properties entirely.
-        */
+        // Overlapping images in home section
+        DOM.overlappedImgs.forEach(img => {
+            img.style.opacity = '0';
+        });
     }
 
+    //**************** VIEW PORT WIDTH > 500 ****************/
     if(evt.target.innerWidth > 500) {
         updateNavOpacity();
     }
 });
 
-document.addEventListener('scroll', updateNavOpacity);
-
-
+// FUNCTIONS
 function updateNavOpacity() {
-    
     if(window.innerWidth > 500) {
         DOM.navContainer.style.opacity = 1 - (window.scrollY / 600);
 
-        if(DOM.navContainer.style.opacity <= 0)
+        if(DOM.navContainer.style.opacity <= 0) {
             DOM.navContainer.style.display = 'none';
+        }
         else
             DOM.navContainer.style.display = 'flex';
     }
 }
-
 /*********************************************************************************
 *                           CONTENT HOME EVENT LISTENERS                         *
 **********************************************************************************/ 
+
+// alternates the opacity of the overlapping images 
+// from 0 to 1 on mouseover event
 DOM.contentImgs.forEach(img => {
 
-    if(window.innerWidth > 500) {
-        let imgToggle = true;
+    let imgToggle = true;
+    
+    img.addEventListener('mouseover', evt => {
 
-        img.addEventListener('mouseover', evt => {
+        if(window.innerWidth > 500) {
 
             let overlappedImg = evt.target.parentNode.lastElementChild;
             
             overlappedImg.style.opacity = imgToggle ? '1.0' : '0';
 
             imgToggle = !imgToggle;
-
-        });
-    }
-});
-
-/*********************************************************************************
-*                             SIGN UP BUTTON LISTENERS                           *
-**********************************************************************************/ 
-let destinationImgSrc = ['../img/sun.jpg', '../img/mountain.jpg', '../img/island.jpg'];
-
-DOM.signUpButtons.forEach(button => {
-
-    button.addEventListener('click', evt => {
-        hideOtherDestinations(evt);
-        showDestinationImg(evt);
-        displayForm(evt);
+        }
     });
 });
 
+/*********************************************************************************
+*                             SIGN UP BUTTON LISTENER                            *
+**********************************************************************************/ 
+let destinationImgSrc = ['../img/sun.jpg', '../img/mountain.jpg', '../img/island.jpg'];
+
+// displays form when sign-me-up button is clicked
+DOM.signUpButtons.forEach(button => {
+    button.addEventListener('click', evt => {
+        
+        hideOtherDestinations(evt);
+        showDestinationImg(evt);
+        displayForm(evt);
+
+        window.scrollTo(0, 9999); // scrolls to bottom of page when form is displayed
+    });
+});
+
+// hides the sign-me-up button and hides all destination containers
+// that were not selected
 function hideOtherDestinations(evt) {
     let signMeUpButton = evt.target;
     let selectedDestination = evt.target.parentNode;
@@ -103,6 +112,7 @@ function hideOtherDestinations(evt) {
     });
 };
 
+// displays a desination image next to the selected destination
 function showDestinationImg(evt) {
     let selectedDestination = evt.target.parentNode;
 
@@ -125,6 +135,7 @@ function showDestinationImg(evt) {
     });
 };
 
+// displays form
 function displayForm(evt) {
     let destinationTitle = getDestination(evt); 
 
@@ -132,15 +143,33 @@ function displayForm(evt) {
     DOM.formLegend.innerHTML = `${destinationTitle}`;
 };
 
+// short hand function to get the title of the selected
+// destination from the parent container of the
+// sign-me-up button
 function getDestination(evt) {
     return evt.target.parentNode.firstElementChild.textContent;
 };
 
-DOM.goBackButton.addEventListener('click', ()=> {
-    DOM.form.style.display = 'none';
-    
-    DOM.destinationImgContainer.style.display = 'none';
+/*********************************************************************************
+*                             GO BACK BUTTON LISTENER                            *
+**********************************************************************************/ 
 
+// hides form when go-back button is clicked
+DOM.goBackButton.addEventListener('click', ()=> {
+    hideForm();
+    resetDestinationStyles();
+});
+
+function hideForm() {
+    DOM.form.style.display = 'none';
+    DOM.destinationImgContainer.style.display = 'none';
+}
+
+// resets the destination container styles back to their
+// original styles after they were changed
+function resetDestinationStyles(){
+    
+    // Destination Sections
     DOM.destinations.forEach(destination => {
         
         if(window.innerWidth > 500) {
@@ -154,28 +183,27 @@ DOM.goBackButton.addEventListener('click', ()=> {
         }
     });
 
+    // Destination Button
     DOM.signUpButtons.forEach(button => {
         button.style.display = 'flex';
     });
-});
+}
 
 /*********************************************************************************
 *                                FORM EVENT LISTENERS                            *
 **********************************************************************************/
 
 /*
-    Below is an attempt at form validation. I really don't know what I'm doing here
-    and whether any of the below is even close to the proper way to do form validation.
-
-    I don't have the time yet to dive into form validation that deeply, but I'm 
-    assuming it will be a topic covered in Lambda. 
-
-    For now, this is my first stab at it. 
+    Below is an attempt at form validation. Don't know what I'm doing here
+    but I gave it a shot.
 */
 
 let nameValid = false;
 let emailValid = false;
 
+// validates form when submit button is clicked
+// if valid, it does... something
+// if not it displays an alert
 DOM.form.addEventListener('submit', evt => {
     if(!nameValid || !emailValid) {
         evt.preventDefault();
@@ -183,6 +211,9 @@ DOM.form.addEventListener('submit', evt => {
     }
 });
 
+// checks to see if a non-alphabetical character was typed on
+// the key up event
+// if it was, an error message will display
 DOM.nameInput.addEventListener('keyup', evt => {
     if(nameValidated(evt)) {
         evt.target.style.border = '1px solid lightgrey';
@@ -201,6 +232,9 @@ DOM.nameInput.addEventListener('keyup', evt => {
 
 });
 
+// checks to see if an invalid email address was enetered on
+// blur event of the text feild
+// if it was an error message will display
 DOM.emailInput.addEventListener('blur', evt => {
     if(emailValidated(evt)) {
         evt.target.style.border = '1px solid lightgrey';
@@ -217,19 +251,17 @@ DOM.emailInput.addEventListener('blur', evt => {
     }
 });
 
+// validates fullname or character with regex expression
 function nameValidated(evt) {
     let nameInput = evt.target.value;
-
-    // only alphabetic characters and spaces
     let alphaRegex = /^[a-zA-Z\s]*$/; 
 
     return evt.key.match(alphaRegex) && nameInput.match(alphaRegex);
 }
 
+// validates email with regex expression
 function emailValidated(evt) {
     let emailInput = evt.target.value;
-
-    // regex for proper email format
     let emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}/; 
 
     return emailInput.match(emailRegex) || emailInput === '';

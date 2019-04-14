@@ -124,7 +124,7 @@ function nameValidated(evt) {
     let nameInput = evt.target.value;
     let alphaRegex = /^[a-zA-Z\s]*$/;
 
-    return evt.key.match(alphaRegex) && nameInput.match(alphaRegex) && nameInput !== '';
+    return evt.key.match(alphaRegex) && nameInput.match(alphaRegex);
 }
 
 function emailValidated(evt) {

@@ -9,7 +9,8 @@
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto" rel="stylesheet">
   <link href="css/index.css" rel="stylesheet">
 
-  <script src="js/index.js" async></script>
+  <script type="module" src="js/dom.js" async></script>
+  <script type="module" src="js/index.js" async></script>
 
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -88,42 +89,27 @@
       <fieldset class="form-container">
         <legend class="legend">TITLE</legend>
 
-        <p>Enter your information below !</p>
+        <h2>Enter your information below !</h2>
 
         <div class="text-input">
           <label>Full Name :</label>
-          <input type="text">
+          <input class="name-input" type="text">
         </div>
 
         <div class="text-input">
           <label>Email :</label>
-          <input type="email">
-        </div>
-
-        <div class="date-input">
-          <label>Upcoming Dates :</label>
-          <div class="radio-buttons">
-
-            <div>
-              <input type="radio">
-              <label>May 1, 2019</label>
-            </div>
-
-            <div>
-              <input type="radio">
-              <label>June 1, 2019</label>
-            </div>
-            <div>
-              <input type="radio">
-              <label>July 1, 2019</label>
-            </div>
-          </div>
+          <input class="email-input" type="email">
         </div>
 
         <div class="button-container">
           <button type="submit">Submit</button>
           <button type="button" class="go-back-button">Go Back</button>
-        </div>  
+        </div> 
+
+        <div class="error-message-container">
+            <p class="error-message">Name cannot contain special characters</p>
+            <p class="error-message">Email format is invalid</p>
+          </div>
 
       </fieldset>
     </form>

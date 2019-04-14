@@ -372,7 +372,7 @@ form fieldset {
 form fieldset legend {
   text-align: center;
 }
-form fieldset p {
+form fieldset h2 {
   margin-top: 20px;
   font-size: 20px;
   text-align: center;
@@ -388,6 +388,7 @@ form fieldset .text-input input {
   width: 70%;
   padding: 3px;
   font-size: 16px;
+  outline: none;
 }
 @media (max-width: 500px) {
   form fieldset .text-input {
@@ -400,32 +401,21 @@ form fieldset .text-input input {
     width: 100%;
   }
 }
-form fieldset .date-input {
+form fieldset .error-message-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-top: 20px;
 }
-form fieldset .date-input .radio-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: stretch;
-  width: 70%;
-}
-@media (max-width: 500px) {
-  form fieldset .date-input .radio-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-  }
+form fieldset .error-message-container .error-message {
+  display: none;
+  color: red;
 }
 form fieldset .button-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: stretch;
   margin: 20px 0;
 }

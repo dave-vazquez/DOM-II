@@ -18,7 +18,7 @@ form {
             text-align: center;
         }
         
-        p {
+        h2 {
             margin-top: 20px;
             font-size: 20px;
             text-align: center;
@@ -27,11 +27,14 @@ form {
         .text-input {
             .flex(@justify: space-between);
             margin-top: 20px;
-
+    
             input {
                 width: 70%;
                 padding: 3px;
                 font-size: 16px;
+
+                outline: none;
+
             }
 
             @media @mobile {
@@ -39,24 +42,18 @@ form {
             }
         }
 
-        .date-input {
-            .flex(@justify: space-between);
+        .error-message-container {
+            .flex(@direction: column, @align: center);
             margin-top: 20px;
-
-            .radio-buttons {
-                .flex(@justify: space-around);
-                width: 70%;
-            }
-
-            @media @mobile {
-                .content-mobile('date-input');
+            .error-message {
+                display: none;
+                color: red;
             }
         }
-
+        
         .button-container {
-            .flex(@justify: space-around);
+            .flex(@justify: space-evenly);
             margin: 20px 0;
-
             button {
                 .button-creator(200px, 45px, @button-bg, @white, 1.8rem); 
             }

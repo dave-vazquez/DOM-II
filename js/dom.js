@@ -6,6 +6,9 @@ export const DOM = {
     // HEADER
     logo: document.querySelector('.logo-heading'),
     navContainer: document.querySelector('.nav-container'),
+
+    // HOME
+    contentImgs: document.querySelectorAll('.img-content img'),
     
     // DESTINATIONS
     destinations: document.querySelectorAll('.destination'),

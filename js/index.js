@@ -1,7 +1,7 @@
 import {DOM} from './dom.js';
 
 /*********************************************************************************
-*                              SCROLL EVENT LISTNERS                             *
+*                              HEADER EVENT LISTENERS                            *
 **********************************************************************************/ 
 document.addEventListener('scroll', () => {
     DOM.navContainer.style.opacity = 1 - (window.scrollY / 600);
@@ -10,8 +10,27 @@ document.addEventListener('scroll', () => {
         DOM.navContainer.style.display = 'none';
     else
         DOM.navContainer.style.display = 'flex';
+});
+
+/*********************************************************************************
+*                           CONTENT HOME EVENT LISTENERS                         *
+**********************************************************************************/ 
+DOM.contentImgs.forEach(img => {
+
+    let imgToggle = true;
+
+    img.addEventListener('mouseover', evt => {
+
+        let overlappedImg = evt.target.parentNode.lastElementChild;
+        
+        overlappedImg.style.opacity = imgToggle ? '1.0' : '0';
+
+        imgToggle = !imgToggle;
+
+    });
 
 });
+
 
 /*********************************************************************************
 *                             SIGN UP BUTTON LISTENERS                           *
@@ -75,12 +94,16 @@ function getDestination(evt) {
 /*********************************************************************************
 *                                FORM EVENT LISTENERS                            *
 **********************************************************************************/
+
+// an attempt at form validation... don't really know what I'm doing here
+
 let nameValid = false;
 let emailValid = false;
 
 DOM.form.addEventListener('submit', evt => {
     if(!nameValid || !emailValid) {
         evt.preventDefault();
+        alert('Form is not complete or contains errors. Try again.');
     }
 });
 
@@ -145,24 +168,4 @@ function emailValidated(evt) {
     let emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}/;
 
     return emailInput.match(emailRegex) || emailInput === '';
-
 }
-
-
-// DOM.logo.addEventListener('mouseout', evt => {
-//     let logo = evt.target;
-
-//     logo.style.transition = 'font-size 140ms linear';
-//     logo.style.fontSize = '4rem';
-// });
-
-
-// DOM.logo.addEventListener('mouseover', evt => {
-
-//     let logo = evt.target;
-
-//     logo.style.transition = 'font-size 140ms linear';
-//     logo.style.fontSize = '5rem';
-// });
-
-

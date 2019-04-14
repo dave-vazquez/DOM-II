@@ -198,7 +198,7 @@ img {
   .main-navigation .nav-container {
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 10px;
+    padding-top: 0px;
   }
 }
 @media (max-width: 500px) {
@@ -238,6 +238,7 @@ img {
   border-bottom: 2px dashed #C0C0C0;
 }
 .home .intro img {
+  display: none;
   max-width: 100%;
   height: auto;
 }
@@ -252,12 +253,14 @@ img {
 }
 .home .content-section .text-content {
   width: 48%;
+  height: 300px;
   padding-right: 1%;
 }
 @media (max-width: 500px) {
   .home .content-section .text-content {
     width: 100%;
     padding: 0;
+    height: none;
   }
 }
 .home .content-section .img-content {
@@ -271,12 +274,20 @@ img {
   }
 }
 .home .content-section .img-content img {
+  position: absolute;
+  width: 400px;
+  height: 300px;
   border-radius: 10px;
 }
 @media (max-width: 500px) {
   .home .content-section .img-content img {
+    position: initial;
     width: 100%;
   }
+}
+.home .content-section .img-content #img2 {
+  opacity: 0;
+  transition: opacity 1000ms linear;
 }
 .home .inverse-content {
   padding-bottom: 30px;
@@ -439,6 +450,7 @@ form fieldset .button-container button {
   border: 1px solid #C0C0C0;
   cursor: pointer;
   font-size: 1.8rem;
+  outline: none;
 }
 @media (max-width: 500px) {
   form fieldset .button-container button {

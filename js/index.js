@@ -1,6 +1,19 @@
 import {DOM} from './dom.js';
 
 /*********************************************************************************
+*                              SCROLL EVENT LISTNERS                             *
+**********************************************************************************/ 
+document.addEventListener('scroll', () => {
+    DOM.navContainer.style.opacity = 1 - (window.scrollY / 600);
+
+    if(DOM.navContainer.style.opacity <= 0)
+        DOM.navContainer.style.display = 'none';
+    else
+        DOM.navContainer.style.display = 'flex';
+
+});
+
+/*********************************************************************************
 *                             SIGN UP BUTTON LISTENERS                           *
 **********************************************************************************/ 
 let destinationImgSrc = ['../img/sun.jpg', '../img/mountain.jpg', '../img/island.jpg'];

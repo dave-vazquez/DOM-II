@@ -179,12 +179,22 @@ img {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 80vh;
+  height: 82vh;
   background-image: url('../img/fun-bus.jpg');
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+@media (max-width: 500px) {
+  .main-navigation {
+    display: block;
+    position: fixed;
+    height: 90px;
+    background-image: none;
+    border-bottom: 2px dashed #C0C0C0;
+    background-color: #FFFFFF;
+  }
 }
 .main-navigation .nav-container {
   position: fixed;
@@ -198,7 +208,9 @@ img {
   .main-navigation .nav-container {
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 0px;
+    align-items: center;
+    height: 88px;
+    padding-top: 10px;
   }
 }
 @media (max-width: 500px) {
@@ -242,8 +254,18 @@ img {
   max-width: 100%;
   height: auto;
 }
+@media (max-width: 500px) {
+  .home .intro img {
+    display: initial;
+  }
+}
 .home .intro h2 {
   margin-top: 20px;
+}
+@media (max-width: 500px) {
+  .home .intro {
+    padding-top: 90px;
+  }
 }
 .home .content-section {
   margin: 30px 0;
@@ -258,6 +280,7 @@ img {
 }
 @media (max-width: 500px) {
   .home .content-section .text-content {
+    height: fit-content;
     width: 100%;
     padding: 0;
     height: none;
@@ -276,7 +299,6 @@ img {
 .home .content-section .img-content img {
   position: absolute;
   width: 400px;
-  height: 300px;
   border-radius: 10px;
 }
 @media (max-width: 500px) {
@@ -286,6 +308,8 @@ img {
   }
 }
 .home .content-section .img-content #img2 {
+  position: absolute;
+  width: 400px;
   opacity: 0;
   transition: opacity 1000ms linear;
 }
@@ -311,40 +335,53 @@ img {
     order: 2;
   }
 }
-.home .content-destination {
-  width: 75%;
-  margin: 0 auto 30px;
+.content-destination {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 600px;
+  background-image: url('../img/destination2.png');
+  background-attachment: fixed;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.content-destination section.destination-header {
+  width: 800px;
+  padding: 25px;
+  border-radius: 25px;
+  background-color: #ffffffc7;
 }
 @media (max-width: 500px) {
-  .home .content-destination {
+  .content-destination {
     width: 100%;
   }
 }
-.home .content-destination img {
-  border-radius: 10px;
-}
-.home .content-pick {
-  padding-top: 30px;
-  border-top: 2px dashed #C0C0C0;
+.content-destination section.content-pick {
   display: flex;
   justify-content: space-between;
+  width: 900px;
 }
 @media (max-width: 500px) {
-  .home .content-pick {
+  .content-destination section.content-pick {
     flex-wrap: wrap;
   }
 }
-.home .content-pick .destination {
-  width: 30%;
-  margin-bottom: 30px;
+.content-destination section.content-pick .destination {
+  width: 250px;
+  margin: 0;
+  border-radius: 25px;
+  padding: 25px;
+  background-color: #ffffffc7;
 }
 @media (max-width: 500px) {
-  .home .content-pick .destination {
+  .content-destination section.content-pick .destination {
     width: 80%;
     margin: 0 auto 30px;
   }
 }
-.home .content-pick .destination .btn {
+.content-destination section.content-pick .destination .btn {
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   border-radius: 15px;
@@ -360,17 +397,23 @@ img {
   font-size: 1.8rem;
 }
 @media (max-width: 500px) {
-  .home .content-pick .destination .btn {
+  .content-destination section.content-pick .destination .btn {
     width: 100%;
   }
 }
-.home .content-pick .destination .btn:hover {
+.content-destination section.content-pick .destination .btn:hover {
   background: #FFFFFF;
   color: #17A2B8;
 }
-.home .content-pick .destination-img-container {
+.content-destination section.content-pick .destination-img-container {
   width: 70%;
   display: none;
+  padding: 25px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.781);
+}
+.content-destination section.content-pick img {
+  height: max-content;
 }
 form {
   display: flex;

@@ -11,7 +11,8 @@ document.addEventListener('scroll', updateNavOpacity);
 window.addEventListener('load', updateNavOpacity);
 
 
-// FUNCTIONS
+// updates the opacity on the nav bar based on the scroll height
+// once opacity reaches zero, nav display switches to display none
 function updateNavOpacity() {
     if(window.innerWidth > 500) {
         DOM.navContainer.style.opacity = 1 - (window.scrollY / 600);
@@ -249,9 +250,10 @@ function emailValidated(evt) {
 
 // prevents certain elements from retaining 
 // JS-manipulated desktop-styles when resized to mobile
+// visa-versa
 window.addEventListener('resize', evt => {
 
-    /**************** VIEW PORT WIDTH <= 500 ***************/
+    /**************** IF VIEW PORT WIDTH <= 500 ***************/
     if(evt.target.innerWidth <= 500) {
 
         // Nav Bar
@@ -275,11 +277,50 @@ window.addEventListener('resize', evt => {
         });
     }
 
-    //**************** VIEW PORT WIDTH > 500 ****************/
+    //**************** IF VIEW PORT WIDTH > 500 ****************/
     if(evt.target.innerWidth > 500) {
         updateNavOpacity();
 
         // Destination Container
         DOM.destinationContainer.style.height = '600px';
     }
+});
+
+/*********************************************************************************
+*                                STOP PROPOGATION                                *
+**********************************************************************************/ 
+let theHuntBegins = false;
+let eggFound = false;
+
+document.querySelector('nav > span').addEventListener('click', evt => {
+    if(!theHuntBegins) {
+        alert('Something\'s hidden in this page...\nClick around to find it...\nOr click Easter Egg again to turn it off.');
+        theHuntBegins = true;
+        evt.stopPropagation();
+    }
+    else {
+        alert('The hunt is off!');
+        theHuntBegins = false;
+        evt.stopPropagation();
+    }
+});
+
+document.querySelector('body').addEventListener('click', evt => {
+    if(theHuntBegins) {
+        alert(`Nope, I'm just a ${evt.target.tagName}...`);
+    }
+    else if (eggFound) {
+        alert(DOM.egg);
+    }
+});
+
+document.querySelector(DOM.secretSauce).addEventListener('click', (evt)=> {
+
+    if(theHuntBegins) {
+        document.body.innerHTML = '<img id="hmg" src="https://media.giphy.com/media/M7gtacN7aPNsc/giphy.gif"></br><iframe width="5px" height="5px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/103876304&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>'
+        theHuntBegins = false
+        eggFound = true;
+        evt.stopPropagation();
+    }
+    
 });

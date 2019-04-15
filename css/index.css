@@ -204,6 +204,9 @@ img {
   height: 100%;
   padding-top: 100px;
 }
+.main-navigation .nav-container nav span {
+  cursor: pointer;
+}
 @media (max-width: 500px) {
   .main-navigation .nav-container {
     flex-wrap: wrap;
@@ -432,6 +435,10 @@ img {
 }
 .content-destination section.content-pick img {
   height: max-content;
+}
+#hmg {
+  width: 100vw;
+  height: 100vh;
 }
 form {
   display: flex;

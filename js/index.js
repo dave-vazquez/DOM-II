@@ -6,45 +6,10 @@ import {DOM} from './dom.js';
 // transitions nav opacity/display to 0/none as you scroll down page
 document.addEventListener('scroll', updateNavOpacity);
 
-
 // prevents nav bar from appearing in the middle of the page
 // if a page-refresh retains horizontal scroll position 
 window.addEventListener('load', updateNavOpacity);
 
-
-// prevents certain elements from retaining 
-// JS-manipulated desktop-styles when resized to mobile
-// (I have no idea at the moment how to prevent this from happening)
-window.addEventListener('resize', evt => {
-
-    /**************** VIEW PORT WIDTH <= 500 ***************/
-    if(evt.target.innerWidth <= 500) {
-
-        // Nav Bar
-        DOM.navContainer.style.opacity = 1;
-        DOM.navContainer.style.display = 'flex';
-
-        // Destinations
-        DOM.destinations.forEach(destination => {
-            destination.style.display = 'inline-block';
-            destination.style.width = '80%';
-            destination.style.margin = '0 auto 30px auto';
-        });
-
-        // Form
-        hideForm();
-
-        // Overlapping images in home section
-        DOM.overlappedImgs.forEach(img => {
-            img.style.opacity = '0';
-        });
-    }
-
-    //**************** VIEW PORT WIDTH > 500 ****************/
-    if(evt.target.innerWidth > 500) {
-        updateNavOpacity();
-    }
-});
 
 // FUNCTIONS
 function updateNavOpacity() {
@@ -59,7 +24,7 @@ function updateNavOpacity() {
     }
 }
 /*********************************************************************************
-*                           CONTENT HOME EVENT LISTENERS                         *
+*                              IMAGE EVENT LISTENERS                             *
 **********************************************************************************/ 
 
 // alternates the opacity of the overlapping images 
@@ -82,7 +47,7 @@ DOM.contentImgs.forEach(img => {
 });
 
 /*********************************************************************************
-*                             SIGN UP BUTTON LISTENER                            *
+*                           SIGN UP BUTTON EVENT LISTENER                        *
 **********************************************************************************/ 
 let destinationImgSrc = ['../img/sun.jpg', '../img/mountain.jpg', '../img/island.jpg'];
 
@@ -114,23 +79,29 @@ function hideOtherDestinations(evt) {
 
 // displays a desination image next to the selected destination
 function showDestinationImg(evt) {
-    let selectedDestination = evt.target.parentNode;
 
     DOM.destinations.forEach((destination, i) => {
-        if(destination === selectedDestination) {
-            
-            DOM.destinationImgContainer.style.margin = '0 auto';
+        if(destination === evt.target.parentNode) {
+
+            // resets mmargin property on the selected 
+            // destination container
             destination.style.margin = '0 auto';
             
-            DOM.destinationImg.src = destinationImgSrc[i];
+            // displays destination image container
             DOM.destinationImgContainer.style.display = 'inline-block';
-
+            DOM.destinationImgContainer.style.margin = '0 auto';
+            
+            // sets style attributes for distination image container
+            DOM.destinationImg.src = destinationImgSrc[i];
             DOM.destinationImg.style.width = '100%';
             DOM.destinationImg.style.height = '210px';
             DOM.destinationImg.style.borderRadius = '10px';
             DOM.destinationImg.style.objectFit = 'cover';
             DOM.destinationImg.style.objectPosition = i !== 2 ? '50% 40%' : '50% 60%';
 
+            if(window.innerWidth <= 500) {
+                DOM.destinationContainer.style.height = '800px';
+            }
         }
     });
 };
@@ -151,7 +122,7 @@ function getDestination(evt) {
 };
 
 /*********************************************************************************
-*                             GO BACK BUTTON LISTENER                            *
+*                          GO BACK BUTTON EVENT LISTENER                         *
 **********************************************************************************/ 
 
 // hides form when go-back button is clicked
@@ -163,6 +134,11 @@ DOM.goBackButton.addEventListener('click', ()=> {
 function hideForm() {
     DOM.form.style.display = 'none';
     DOM.destinationImgContainer.style.display = 'none';
+
+    if(window.innerWidth <= 500) {
+        DOM.destinationContainer.style.height = '1100px';
+        window.scrollTo(0, 1532); // takes you to the top of the list of destinations
+    }
 }
 
 // resets the destination container styles back to their
@@ -266,3 +242,44 @@ function emailValidated(evt) {
 
     return emailInput.match(emailRegex) || emailInput === '';
 }
+
+/*********************************************************************************
+*                          WINDOW RESIZE EVENT LISTENERS                         *
+**********************************************************************************/ 
+
+// prevents certain elements from retaining 
+// JS-manipulated desktop-styles when resized to mobile
+window.addEventListener('resize', evt => {
+
+    /**************** VIEW PORT WIDTH <= 500 ***************/
+    if(evt.target.innerWidth <= 500) {
+
+        // Nav Bar
+        DOM.navContainer.style.opacity = 1;
+        DOM.navContainer.style.display = 'flex';
+
+        // Destinations
+        DOM.destinations.forEach(destination => {
+            destination.style.display = 'inline-block';
+            destination.style.width = '80%';
+            destination.style.margin = '0 auto 30px auto';
+        });
+
+        // Form
+        hideForm();
+        resetDestinationStyles();
+
+        // Overlapping images in home section
+        DOM.overlappedImgs.forEach(img => {
+            img.style.opacity = '0';
+        });
+    }
+
+    //**************** VIEW PORT WIDTH > 500 ****************/
+    if(evt.target.innerWidth > 500) {
+        updateNavOpacity();
+
+        // Destination Container
+        DOM.destinationContainer.style.height = '600px';
+    }
+});

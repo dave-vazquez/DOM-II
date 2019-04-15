@@ -12,6 +12,7 @@ export const DOM = {
     overlappedImgs: document.querySelectorAll('.img-content #img2'),
     
     // DESTINATIONS
+    destinationContainer: document.querySelector('.content-destination'),
     destinations: document.querySelectorAll('.destination'),
     destinationImgContainer: document.querySelector('.destination-img-container'),
     destinationImg: document.querySelector('#destination-img'),

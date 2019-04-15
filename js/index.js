@@ -318,17 +318,18 @@ document.querySelector('body').addEventListener('click', evt => {
     if(theHuntBegins) {
         if(attempts < 7) {
             alert(`Nope, I'm just a ${evt.target.tagName}...`);
+
+            attempts++;
         }
         else {
             alert('What\s going on? Read between the lines...');
             attempts = 0;
+
         }
     }
     else if (eggFound) {
         alert(DOM.eggAlert);
     }
-
-    attempts++;
 });
 
 document.querySelector(DOM.secretSauce).addEventListener('click', (evt)=> {

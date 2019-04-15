@@ -322,7 +322,7 @@ document.querySelector('body').addEventListener('click', evt => {
             attempts++;
         }
         else {
-            alert('What\s going on? Read between the lines...');
+            alert('What\s going on?\nRead between the lines...\nSomewhere inside the text on this page...');
             attempts = 0;
         }
     }

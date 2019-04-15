@@ -287,14 +287,23 @@ window.addEventListener('resize', evt => {
 });
 
 /*********************************************************************************
+*                                PREVENT DEFAULT                                 *
+**********************************************************************************/ 
+
+DOM.navLinks.addEventListener('click', evt => {
+    evt.preventDefault();
+})
+
+/*********************************************************************************
 *                                STOP PROPOGATION                                *
 **********************************************************************************/ 
 let theHuntBegins = false;
 let eggFound = false;
+let attempts = 0;
 
 document.querySelector('nav > span').addEventListener('click', evt => {
     if(!theHuntBegins) {
-        alert('Something\'s hidden in this page...\nClick around to find it...\nOr click Easter Egg again to turn it off.');
+        alert('Something\'s hidden in this page...\nClick around to find it...\nOr click \'Easter Egg\' again to turn it off.');
         theHuntBegins = true;
         evt.stopPropagation();
     }
@@ -307,17 +316,25 @@ document.querySelector('nav > span').addEventListener('click', evt => {
 
 document.querySelector('body').addEventListener('click', evt => {
     if(theHuntBegins) {
-        alert(`Nope, I'm just a ${evt.target.tagName}...`);
+        if(attempts < 7) {
+            alert(`Nope, I'm just a ${evt.target.tagName}...`);
+        }
+        else {
+            alert('What\s going on? Read between the lines...');
+            attempts = 0;
+        }
     }
     else if (eggFound) {
-        alert(DOM.egg);
+        alert(DOM.eggAlert);
     }
+
+    attempts++;
 });
 
 document.querySelector(DOM.secretSauce).addEventListener('click', (evt)=> {
 
     if(theHuntBegins) {
-        document.body.innerHTML = '<img id="hmg" src="https://media.giphy.com/media/M7gtacN7aPNsc/giphy.gif"></br><iframe width="5px" height="5px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/103876304&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>'
+        document.body.innerHTML = DOM.egg;
         theHuntBegins = false
         eggFound = true;
         evt.stopPropagation();

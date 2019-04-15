@@ -6,6 +6,7 @@ export const DOM = {
     // HEADER
     logo: document.querySelector('.logo-heading'),
     navContainer: document.querySelector('.nav-container'),
+    navLinks: document.querySelector('nav > a'),
 
     // HOME
     contentImgs: document.querySelectorAll('.img-content img'),
@@ -142,5 +143,152 @@ export const DOM = {
 
 
 
-DOM.egg = 'HEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAA'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DOM.eggAlert = 'HEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAAHEYYEYAAEYAAAEYAEYAA';
 DOM.secretSauce = '.text-content p > span';
+DOM.egg = '<img id="hmg" src="https://media.giphy.com/media/M7gtacN7aPNsc/giphy.gif"></br><iframe width="5px" height="5px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/103876304&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>';

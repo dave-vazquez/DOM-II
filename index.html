@@ -1,15 +1,18 @@
 <!doctype html>
 
 <html lang="en">
+    
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Fun Bus Travel Agency - Solution</title>
 
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto" rel="stylesheet">
   <link href="css/index.css" rel="stylesheet">
 
-  <script src="js/index.js" async></script>
+  <script type="module" src="js/dom.js" async></script>
+  <script type="module" src="js/index.js" async></script>
 
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -26,6 +29,7 @@
         <a class="nav-link" href="#">About Us</a>
         <a class="nav-link" href="#">Blog</a>
         <a class="nav-link" href="#">Contact</a>
+        <span style="font-size: 16px; color: red">Easter Egg</span>
       </nav>
     </div>
   </header>
@@ -43,27 +47,33 @@
         <p>Expedition colorful design simple excursion blogger blogger design WordPress design, design organized website theme.</p>
       </div>
       <div class="img-content">
-        <img src="img/adventure.jpg" alt="Let's go on an adventure!">
+        <img id="img1" src="img/adventure.jpg" alt="Let's go on an adventure!">
+        <img id="img2" src="img/adventure2.jpg" alt="Let's go on an adventure!">
       </div>
     </section>
     <section class="content-section inverse-content">
       <div class="img-content">
-          <img src="img/fun.jpg" class="img-fluid rounded" alt="Lets have fun!">
+          <img id="img1" src="img/fun.jpg" class="img-fluid rounded" alt="Lets have fun!">
+          <img id="img2" src="img/fun2.jpg" class="img-fluid rounded" alt="Lets have fun!">
       </div>
       <div class="text-content">
         <h2>Adventure Awaits</h2>
-        <p>Adventure webdesign pretty design design, excursion cute WordPress blogger design webdesign adventure. Pretty simple traveling fun WordPress wanderlust darn simple organized.</p> 
+        <p>Adventure web design pretty design design, excursion cute WordPress blogger design webdesign adventure. Pretty simple <span>heman</span> traveling fun WordPress wanderlust darn simple organized.</p> 
         <p>Expedition colorful design simple excursion blogger blogger design WordPress design, design organized website theme.</p>
       </div>
      
     </section>
-    <section class="content-destination">
+  </div>
+
+  <div class="content-destination">
+
+    <section class="destination-header">
       <h2>Pick Your Destination</h2>
       <p>Expedition excursion design darn excursion fun, clean simple organized WordPress Travel colorful webdesign. Traveler blogger website design expedition clean excursion traveling.</p>
-      <img src="img/destination.jpg" alt="Second slide">
+      <!-- <img src="img/destination.jpg" alt="Second slide"> -->
     </section>
+  
     <section class="content-pick">
-
       <div class="destination">
         <h4>Fun In The Sun</h4>
         <p>Expedition excursion design excursion fun, clean simple organized WordPress Travel colorful webdesign. Traveler blogger website design expedition clean excursion traveling.</p>
@@ -79,7 +89,42 @@
         <p>Expedition excursion design excursion fun, clean simple organized WordPress Travel colorful webdesign. Traveler blogger website design expedition clean excursion traveling.</p>
         <div class="btn">Sign Me Up!</div>
       </div>
+      <div class="destination-img-container">
+        <img id="destination-img" src="">
+      </div>
     </section>
+
+  </div>
+  
+  <div class="container home">
+    <form>
+      <fieldset class="form-container">
+        <legend class="legend"></legend>
+
+        <h2>Enter your information below !</h2>
+
+        <div class="text-input">
+          <label>Full Name :</label>
+          <input class="name-input" type="text">
+        </div>
+
+        <div class="text-input">
+          <label>Email :</label>
+          <input class="email-input" type="email">
+        </div>
+
+        <div class="button-container">
+          <button type="submit">Submit</button>
+          <button type="button" class="go-back-button">Go Back</button>
+        </div> 
+
+        <div class="error-message-container">
+            <p class="error-message">Name cannot contain special characters</p>
+            <p class="error-message">Email format is invalid</p>
+          </div>
+
+      </fieldset>
+    </form>
   </div><!-- container -->
 
   <footer class="footer">

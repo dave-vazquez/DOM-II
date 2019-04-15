@@ -50,7 +50,7 @@ DOM.contentImgs.forEach(img => {
 /*********************************************************************************
 *                           SIGN UP BUTTON EVENT LISTENER                        *
 **********************************************************************************/ 
-let destinationImgSrc = ['../img/sun.jpg', '../img/mountain.jpg', '../img/island.jpg'];
+let destinationImgSrc = ['img/sun.jpg', 'img/mountain.jpg', 'img/island.jpg'];
 
 // displays form when sign-me-up button is clicked
 DOM.signUpButtons.forEach(button => {

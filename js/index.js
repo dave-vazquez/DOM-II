@@ -324,7 +324,6 @@ document.querySelector('body').addEventListener('click', evt => {
         else {
             alert('What\s going on? Read between the lines...');
             attempts = 0;
-
         }
     }
     else if (eggFound) {
